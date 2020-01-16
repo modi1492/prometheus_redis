@@ -2,7 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: nfs-test-claim
-  namespace: my-namespace
+  namespace: cmengdi
   annotations:
     # [REQUIRED] StorageClass label
     # This is created by DECC when user's Storage capacity request is approved in DECC UI
