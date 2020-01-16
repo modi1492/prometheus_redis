@@ -6,7 +6,7 @@ metadata:
   annotations:
     # [REQUIRED] StorageClass label
     # This is created by DECC when user's Storage capacity request is approved in DECC UI
-    volume.beta.kubernetes.io/storage-class: e8ae4sbef6ac4f44a47301d5b5100a8a
+    volume.beta.kubernetes.io/storage-class: 7584d5a606e4444cbb6837b08f3c4a78
   labels:
     # [OPTIONAL] VMware username (without @vmware.com).
     username: "cmengdi"
