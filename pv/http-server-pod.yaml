@@ -2,7 +2,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: http-server-pod
-  namespace: cmengdi
+  namespace: cmengdi1
 spec:
   # [OPTIONAL]
   # User ID of username provided in PersistentVolumeClaim
