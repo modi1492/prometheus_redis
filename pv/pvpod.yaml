@@ -18,7 +18,7 @@ spec:
       image: bitnami/nginx:latest
       env:
       - name: USER
-        value: "dbhanushali"
+        value: "cmengdi"
       ports:
         - containerPort: 80
           name: "http-server"
