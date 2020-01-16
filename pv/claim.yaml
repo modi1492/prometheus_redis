@@ -1,0 +1,35 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs-test-claim
+  namespace: my-namespace
+  annotations:
+    # [REQUIRED] StorageClass label
+    # This is created by DECC when user's Storage capacity request is approved in DECC UI
+    volume.beta.kubernetes.io/storage-class: e8ae4sbef6ac4f44a47301d5b5100a8a
+  labels:
+    # [OPTIONAL] VMware username (without @vmware.com).
+    username: "cmengdi"
+
+    # [OPTIONAL] Domain information for the username provided above
+    userDomain: "VMWAREM"
+
+    # [OPTIONAL]
+    # Snapshot options (snapshotDurationDays, snapshotFrequencyDays, snapshotFrequencyTime)
+    # must all be provided to enable snapshots on the PV. Enabling snapshots is optional, however.
+    # Note that the PV and it's snapshots are deleted when the PVC is deleted.
+    # Snapshot schedule duration (in days)
+    snapshotDurationDays: "8"
+    # Snapshot schedule frequency (in days)
+    snapshotFrequencyDays: "2"
+    # Time of the day in 24hr format (e.g 2345 is 11:45 pm), when the snapshot should be created.
+    # Please do not copy this value (2345), as all snapshots would be taken at the same exact time
+    # and it could create tremendous load on the Isilon server.
+    snapshotFrequencyTime: "2345"
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      # [REQUIRED] Supported units: (B|Ki|KiB|Mi|MiB|Gi|GiB|Ti|TiB)
+      storage: "512Mi"

@@ -1,0 +1,27 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: http-server-pod
+  namespace: my-namespace
+spec:
+  # [OPTIONAL]
+  # User ID of username provided in PersistentVolumeClaim
+  securityContext:
+    runAsUser: 2051813
+  volumes:
+    - name: http-server-storage
+      persistentVolumeClaim:
+        # Name of PersistentVolumeClaim
+        claimName: nfs-test-claim
+  containers:
+    - name: http-server-container
+      image: bitnami/nginx:latest
+      env:
+      - name: USER
+        value: "dbhanushali"
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: http-server-storage
