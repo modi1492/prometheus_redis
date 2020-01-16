@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: qa-ibaboss-elk-redis
+  namespace: qa-ibaboss-elk
+spec:
+  replicas: 1
+  template:
+    metadata:
+     labels:
+       name: qa-ibaboss-elk-redis
+    spec:
+     containers:
+     - name: qa-ibaboss-elk-redis
+       image: redis
+       volumeMounts:
+       - name: foo
+         mountPath: "/usr/local/etc"
+       command:
+         - "redis-server"
+       args:
+         - "/usr/local/etc/redis/redis.conf"
+     volumes:
+     - name: foo
+       configMap:
+         name: qa-ibaboss-elk-redis-conf
+         items:
+           - key: redis.conf
+             path: redis/redis.conf
